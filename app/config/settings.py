@@ -27,7 +27,6 @@ STATICFILES_DIRS = [
     STATIC_DIR,
 ]
 
-
 # secrets
 SECRET_DIR = os.path.join(ROOT_DIR, '.secrets')
 SECRET_BASE = os.path.join(SECRET_DIR, 'base.json')
@@ -40,10 +39,7 @@ f.close()
 # 위 결과 (JSON 형식의 문자열)를 파이썬 객체로 변환
 secrets_base = json.loads(base_text)
 
-
 secrets_base = json.loads(open(SECRET_BASE, 'rt').read())
-
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
@@ -58,7 +54,6 @@ ALLOWED_HOSTS = [
     '.amazonaws.com',
     'localhost',
 ]
-
 
 # Application definition
 
@@ -105,7 +100,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
@@ -115,7 +109,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
@@ -135,7 +128,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
@@ -149,8 +141,5 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
-
-
