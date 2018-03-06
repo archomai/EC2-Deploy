@@ -32,6 +32,7 @@ SECRET_DIR = os.path.join(ROOT_DIR, '.secrets')
 SECRET_BASE = os.path.join(SECRET_DIR, 'base.json')
 SECRET_LOCAL = os.path.join(SECRET_DIR, 'local.json')
 SECRET_DEV = os.path.join(SECRET_DIR, 'dev.json')
+SECRET_PRODUCTION = os.path.join(SECRET_DIR, 'production.json')
 
 
 # base.json 파일을 읽어온 결과
