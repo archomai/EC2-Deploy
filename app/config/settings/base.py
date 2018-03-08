@@ -34,15 +34,19 @@ SECRET_LOCAL = os.path.join(SECRET_DIR, 'local.json')
 SECRET_DEV = os.path.join(SECRET_DIR, 'dev.json')
 SECRET_PRODUCTION = os.path.join(SECRET_DIR, 'production.json')
 
-
-# base.json 파일을 읽어온 결과
-f = open(SECRET_BASE, 'rt')
-base_text = f.read()
-f.close()
-
-# 위 결과 (JSON 형식의 문자열)를 파이썬 객체로 변환
-secrets_base = json.loads(base_text)
 secrets_base = json.loads(open(SECRET_BASE, 'rt').read())
+
+# Django secret key
+SECRET_KEY = secrets_base['SECRET_KEY']
+
+# AWS
+AWS_ACCESS_KEY_ID = secrets_base['AWS_ACCESS_KEY_ID']
+AWS_SECRET_ACCESS_KEY = secrets_base['AWS_SECRET_ACCESS_KEY']
+AWS_STORAGE_BUCKET_NAME = secrets_base['AWS_STORAGE_BUCKET_NAME']
+# 파일의 읽기권한을 없앰 (private : get parameter 를 주어야 인증)
+AWS_DEFAULT_ACL = 'private'
+AWS_S3_REGION_NAME = 'ap-northeast-2'
+AWS_S3_SIGNATURE_VERSION = 's3v4'
 
 SECRET_KEY = secrets_base['SECRET_KEY']
 
@@ -57,6 +61,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'photos',
     'raven.contrib.django.raven_compat',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -86,19 +91,6 @@ TEMPLATES = [
         },
     },
 ]
-
-WSGI_APPLICATION = 'config.wsgi.application'
-
-# Database
-# https://docs.djangoproject.com/en/2.0/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
